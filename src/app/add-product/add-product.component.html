@@ -1,0 +1,200 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<nav id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand">Product Inventory</a>
+           
+           
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" (click)="Home()" aria-current="page"
+                            href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" (click)="AddProduct()"><i class="bi-cart-fill me-1"></i>Add
+                        Product</button>
+                </form>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" (click)="AllProduct()"><i class="bi-cart-fill me-1"></i>All
+                        Product</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <section id="Home"></section>
+
+    <div>
+        <section id="contact">
+
+            <div id="contact-box">
+                <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="name">Product Name:</label>
+                                    </td>
+                                    <td>
+                                        <input formControlName="ProductName" type="Product Name"
+                                            placeholder="Enter Your Product Name" required>
+                                        <div *ngIf="f.ProductName.invalid && (f.ProductName.dirty || f.ProductName.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductName.errors?.['required']">
+                                                Product Name is required.
+                                            </div>
+                                            <div *ngIf="f.ProductName.errors?.['minlength']">
+                                                Product Name must not be less than 3 characters..
+                                            </div>
+                                            <div *ngIf="f.ProductName.errors?.['maxlength']">
+                                                Product Name must not be greater than 200 characters..
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Product Category:</label>
+                                    </td>
+                                    <td>
+                                        <select formControlName="ProductCategory">
+                                            <option value="">Select Category</option>
+                                            <option value="{{item.category}}" *ngFor="let item of Productdata">
+                                                {{item.category}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="f.ProductCategory.invalid && (f.ProductCategory.dirty || f.ProductCategory.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductCategory.errors?.['required']">
+                                                Category is required.
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Product Fresheness:</label>
+                                    </td>
+                                    <td>
+                                        <div id="contact-box-1">
+                                            <input id="ProductFresheness" type="radio" value="Brand New"
+                                                name="ProductFresheness" formControlName="ProductFresheness">Brand New
+                                            <input id="ProductFresheness" type="radio" value="Second Hand"
+                                                name="ProductFresheness" formControlName="ProductFresheness">Second Hand
+                                            <input id="ProductFresheness" type="radio" value="Refurbished"
+                                                name="ProductFresheness" formControlName="ProductFresheness">Refurbished
+
+                                        </div>
+                                        <div *ngIf="f.ProductFresheness.invalid && (f.ProductFresheness.dirty || f.ProductFresheness.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductFresheness.errors?.['required']">
+                                                Product Fresheness is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Image of Product:</label>
+                                    </td>
+                                    <td>
+                                        <input formControlName="ImageofProduct" TYPE="File" id="attachments"  
+                                            (change)="detectFiles($event)" name="mblueFile" size="30">
+                                        <div *ngIf="f.ImageofProduct.invalid && (f.ImageofProduct.dirty || f.ImageofProduct.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ImageofProduct.errors?.['required']">
+                                                Image of Product is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Product Brand:</label>
+                                    </td>
+                                    <td>
+                                        <input formControlName="ProductBrand" type="Product Brand"
+                                            placeholder="Enter Your Product Brand">
+
+                                        <div *ngIf="f.ProductBrand.invalid && (f.ProductBrand.dirty || f.ProductBrand.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductBrand.errors?.['required']">
+                                                Product Brand is required.
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Manufacturer:</label>
+                                    </td>
+                                    <td>
+                                        <input formControlName="Manufacturer" type="Manufacturer"
+                                            placeholder="Enter Manufacturer">
+                                        <div *ngIf="f.Manufacturer.invalid && (f.Manufacturer.dirty || f.Manufacturer.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.Manufacturer.errors?.['required']">
+                                                Manufacturer is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Product Price:</label>
+                                    </td>
+                                    <td>
+                                        <input formControlName="ProductPrice" type="number"
+                                            placeholder="Enter Product Price">
+
+                                        <div *ngIf="f.ProductPrice.invalid && (f.ProductPrice.dirty || f.ProductPrice.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductPrice.errors?.['required']">
+                                                Product Price is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Description:</label>
+                                    </td>
+                                    <td>
+                                        <textarea formControlName="Description" COLS=25 ROWs=5></textarea>
+                                        <div *ngIf="f.Description.invalid && (f.Description.dirty || f.Description.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.Description.errors?.['required']">
+                                                Description is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="name">Comment:</label>
+                                    </td>
+                                    <td>
+                                        <textarea formControlName="Comment" COLS=25 ROWs=5></textarea>
+                                        <div *ngIf="f.Comment.invalid && (f.Comment.dirty || f.Comment.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.Comment.errors?.['required']">
+                                                Comment is required.
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn" >Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
