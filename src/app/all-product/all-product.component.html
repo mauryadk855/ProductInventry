@@ -2,85 +2,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-
-<nav id="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand">Product Inventory</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" (click)="Home()" aria-current="page" href="#!">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+<div class="">
+    <div class="Product-List">
+        <div class="card card-box rounded-0">
+            <div class="card-header pt-4">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class=" nav-link active" href="#">ALL PRODUCTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="AddProduct()" href="javascript:void(0);" class="nav-link btn btn-outline-dark">ADD
+                            PRODUCT</a>
+                    </li>
                 </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" (click)="AddProduct()"><i class="bi-cart-fill me-1"></i>Add Product</button>
-                </form>       
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" (click)="AllProduct()"><i class="bi-cart-fill me-1"></i>All Product</button>
-                </form>    
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table-borderless table-light">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Product Category</th>
+                                <th>MRP</th>
+                                <th>Sale Price</th>
+                                <th>Product Brand</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of Data">
+                                <td>
+                                    <img alt="" class="product-list-img" src="{{baseImageUrl}}{{item.image_of_Product}}"
+                                        onerror="this.onerror=null;this.src='/assets/Img/no_img.jpg'" />
+                                </td>
+                                <td>
+                                    <a routerLink="/ProductDetails/{{item.id}}">{{item.product_Name}}</a>
+                                </td>
+                                <td>
+                                    {{item.product_Category}}
+    
+                                </td>
+                                <td>
+                                    {{item.mrp}}
+                                </td>
+                                <td>
+                                    {{item.sale_Price}}
+                                </td>
+                                <td>
+                                    {{item.product_Brand}}
+                                </td>
+                                <td>
+                                    <a routerLink="/AddProduct/{{item.id}}"> <i class="fa fa-edit"
+                                            style="font-size:30px"></i></a> &nbsp; &nbsp;
+                                    <span (click)="deleteProduct(item.id)"><i class="fa fa-trash"
+                                            style="font-size:30px"></i></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </nav>
-<section id="Home"></section>
+    </div>
 
-
-<div class="Product-List">
-<h1>All Product List</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Product Image</th>
-            <th>Product Name</th>
-            <th>Product Category</th>
-            <th>Product Fresheness</th>
-            <th>Product Brand</th>
-            <th>Manufacturer</th>
-            <th>Product Price</th>
-            <th>Description</th>
-            <th>Comment</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of Data">
-           
-            <td>
-                <img alt="" src="{{baseImageUrl}}{{item.image_of_Product}}" 
-                onerror="this.onerror=null;this.src='/assets/Img/no_img.jpg'"/>
-            </td>
-            <td>
-                {{item.product_Name}}
-            </td>
-            <td>                                 
-                {{item.product_Category}}
-            </td>
-            <td>
-                {{item.product_Fresheness}}
-            </td>
-            <td>
-                {{item.product_Brand}}
-            </td>
-            <td>
-                {{item.manufacturer}}
-            </td>
-            <td>
-                {{item.product_Price}}
-            </td>
-            <td>
-                {{item.additional_Description}}
-            </td>
-            <td>
-                {{item.comment}}
-            </td>
-
-        </tr>
-
-
-
-        
-    </tbody>
-</table>
 </div>
-

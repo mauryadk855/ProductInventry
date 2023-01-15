@@ -1,0 +1,84 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<nav id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <h2 class="navbar-brand">Product Inventory</h2>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!"></a></li>
+                </ul>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" (click)="AddProduct()"><i class="bi-cart-fill me-1"></i>Add
+                        Product</button>
+                </form>
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" (click)="AllProduct()"><i class="bi-cart-fill me-1"></i>All
+                        Product</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <section id="Home"></section>
+
+    <div class="container" style="margin-top: -70px;">
+        <form [formGroup]="DetailsProductForm" (ngSubmit)="View()">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="mainImage" id="Preview" *ngIf="DetailsProductForm.value['ImageofProduct']!=''"
+                        style="height: 400px;width: 400px; border: groove; padding: 10px; border-width: 1px; border-color: rgba(255, 255, 255, 0.396);"
+                        src="{{baseImageUrl}}{{DetailsProductForm.value['ImageofProduct']}} " alt="NO IMAGE"
+                        onerror="this.onerror=null;this.src='/assets/Img/no_img.jpg'">
+                   
+                        <div class="other-Image" *ngIf="DetailsProductForm.value['OtherImage']!=''">
+                        <img (click)="viewImage(baseImageUrl+item)" *ngFor="let item of OtherImages"
+                            style="height: 90px;width: 90px; border: groove; margin-top: 10px; margin-left: 8px; padding: 5px;  border-width: 1px; border-color:rgba(255, 255, 255, 0.396); cursor: pointer;"
+                            src="{{baseImageUrl}}{{item}}" alt="NO IMAGE"
+                            onerror="this.onerror=null;this.src='/assets/Img/no_img.jpg'">
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="row" style="margin-top: 0;">
+                        <th>
+                            <span class="ProductName">{{DetailsProductForm.value['ProductName']}} </span>
+                        </th>
+
+                        <td>
+                            <del>
+                                <span>&#8377;</span>
+                                <span class="MRP">{{DetailsProductForm.value['MRP']}}</span>
+                            </del>
+                            &nbsp;
+                            <span>&#8377;</span>
+                            <span class="Saleprice">{{DetailsProductForm.value['SalePrice']}}</span>
+                        </td>
+                       
+                        <td>
+                            <label class="Brand">Brand:</label>&nbsp;
+                            <span class="ProductBrand">{{DetailsProductForm.value['ProductBrand']}} </span>
+                        </td>
+                        <td>
+                            <label class="Description">Description:</label> &nbsp;
+                            <span class="ProductDescription"> {{DetailsProductForm.value['Description']}}</span>
+                        </td>
+                    </div>
+               
+                </div>
+                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <img [src]="imgUrl" alt="" >
+                            <button mat-button (click)="closePopup()" class="close"> &times;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

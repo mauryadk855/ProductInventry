@@ -6978,8 +6978,8 @@
 
 
 #navbar {
-   // display: flex;
-   // position: relative;
+    //display: flex;
+    position: relative;
     align-items: center;
 
 
@@ -6988,7 +6988,7 @@
     content: "";
     background-color: gray;
     position: absolute;
-    height: 13%;
+    height: 100%;
     top: 0;
     left: 0;
     width: 100%;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,9 +18,9 @@ export class HomeComponent {
     this.route.navigate(['/Home'])
   }
   AddProduct() {
-    this.route.navigate(['/Add Product'])
+    this.route.navigate(['/AddProduct'])
   }
   AllProduct() {
-    this.route.navigate(['/All Product'])
+    this.route.navigate(['/AllProduct'])
   }
 }

@@ -6,19 +6,18 @@
 <nav id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand">Product Inventory</a>
-           
-           
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h2 class="navbar-brand">Product Inventory</h2>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" (click)="Home()" aria-current="page"
-                            href="#!">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!"></a></li>
                 </ul>
-                <form class="d-flex">
+                <!-- <form class="d-flex">
                     <button class="btn btn-outline-dark" (click)="AddProduct()"><i class="bi-cart-fill me-1"></i>Add
                         Product</button>
-                </form>
+                </form> -->
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" (click)="AllProduct()"><i class="bi-cart-fill me-1"></i>All
                         Product</button>
@@ -28,22 +27,28 @@
     </nav>
     <section id="Home"></section>
 
-    <div>
-        <section id="contact">
 
-            <div id="contact-box">
-                <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
 
-                    <div class="form-group">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <label for="name">Product Name:</label>
-                                    </td>
-                                    <td>
-                                        <input formControlName="ProductName" type="Product Name"
-                                            placeholder="Enter Your Product Name" required>
+    <!-- Add Product -->
+    <section id="contact" *ngIf="modelAction=='Add'">
+    
+        <div class="card card-box rounded-0">
+            <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+                <div class="card-header">
+                    <h3>Add Product</h3>
+    
+                    <div class="card-header--actions">
+                    </div>
+                </div>
+                <div class="card-body card-height">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Product Name </label>
+                                        <input formControlName="ProductName" maxlength="100" type="text"
+                                            class="form-control" placeholder="Product Name *" required>
                                         <div *ngIf="f.ProductName.invalid && (f.ProductName.dirty || f.ProductName.touched)"
                                             class="alert alert-danger">
                                             <div *ngIf="f.ProductName.errors?.['required']">
@@ -56,15 +61,28 @@
                                                 Product Name must not be greater than 200 characters..
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Product Category:</label>
-                                    </td>
-                                    <td>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>HSN CODE</label>
+                                        <input formControlName="HSNCODE" type="text" class="form-control"
+                                            placeholder="HSN CODE" />                               
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Item Code </label>
+                                        <input formControlName="item_code" type="text" class="form-control"
+                                            placeholder="Item Code" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Category </label>
                                         <select formControlName="ProductCategory">
-                                            <option value="">Select Category</option>
                                             <option value="{{item.category}}" *ngFor="let item of Productdata">
                                                 {{item.category}}
                                             </option>
@@ -75,126 +93,304 @@
                                                 Category is required.
                                             </div>
                                         </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Product Fresheness:</label>
-                                    </td>
-                                    <td>
-                                        <div id="contact-box-1">
-                                            <input id="ProductFresheness" type="radio" value="Brand New"
-                                                name="ProductFresheness" formControlName="ProductFresheness">Brand New
-                                            <input id="ProductFresheness" type="radio" value="Second Hand"
-                                                name="ProductFresheness" formControlName="ProductFresheness">Second Hand
-                                            <input id="ProductFresheness" type="radio" value="Refurbished"
-                                                name="ProductFresheness" formControlName="ProductFresheness">Refurbished
-
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Manufacturer </label>
+                                        <input formControlName="Manufacturer" type="text" class="form-control"
+                                            placeholder="Manufacturer" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Maximum retail price (MRP) </label>
+                                        <input formControlName="MRP" type="text" class="form-control" placeholder="0.00" />
+                                        <div *ngIf="f.MRP.invalid && (f.MRP.dirty || f.MRP.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.MRP.errors?.['required']">
+                                            MRP is required.
                                         </div>
-                                        <div *ngIf="f.ProductFresheness.invalid && (f.ProductFresheness.dirty || f.ProductFresheness.touched)"
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Sale Price </label>
+                                        <input formControlName="SalePrice" type="text" class="form-control"
+                                            placeholder="Sale Price" />
+                                        <div *ngIf="f.SalePrice.invalid && (f.SalePrice.dirty || f.SalePrice.touched)"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.ProductFresheness.errors?.['required']">
-                                                Product Fresheness is required.
+                                            <div *ngIf="f.SalePrice.errors?.['required']">
+                                                Sale Price is required.
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Image of Product:</label>
-                                    </td>
-                                    <td>
-                                        <input formControlName="ImageofProduct" TYPE="File" id="attachments"  
-                                            (change)="detectFiles($event)" name="mblueFile" size="30">
-                                        <div *ngIf="f.ImageofProduct.invalid && (f.ImageofProduct.dirty || f.ImageofProduct.touched)"
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Brand </label>
+                                        <input formControlName="ProductBrand" type="text" class="form-control"
+                                            placeholder="Brand" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Unit </label>
+                                        <input formControlName="Unit" type="text" class="form-control" placeholder="Unit" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Is Tax Included? </label>
+                                        <select formControlName="TaxIncluded">
+                                            <option selected value="True">Yes</option>
+                                            <option value="False">No</option>
+                                        </select>
+                                        <div *ngIf="f.TaxIncluded.invalid && (f.TaxIncluded.dirty || f.TaxIncluded.touched)"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.ImageofProduct.errors?.['required']">
-                                                Image of Product is required.
+                                            <div *ngIf="f.TaxIncluded.errors?.['required']">
+                                                Tax Included is required.
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Product Brand:</label>
-                                    </td>
-                                    <td>
-                                        <input formControlName="ProductBrand" type="Product Brand"
-                                            placeholder="Enter Your Product Brand">
-
-                                        <div *ngIf="f.ProductBrand.invalid && (f.ProductBrand.dirty || f.ProductBrand.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.ProductBrand.errors?.['required']">
-                                                Product Brand is required.
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Manufacturer:</label>
-                                    </td>
-                                    <td>
-                                        <input formControlName="Manufacturer" type="Manufacturer"
-                                            placeholder="Enter Manufacturer">
-                                        <div *ngIf="f.Manufacturer.invalid && (f.Manufacturer.dirty || f.Manufacturer.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.Manufacturer.errors?.['required']">
-                                                Manufacturer is required.
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Product Price:</label>
-                                    </td>
-                                    <td>
-                                        <input formControlName="ProductPrice" type="number"
-                                            placeholder="Enter Product Price">
-
-                                        <div *ngIf="f.ProductPrice.invalid && (f.ProductPrice.dirty || f.ProductPrice.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.ProductPrice.errors?.['required']">
-                                                Product Price is required.
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Description:</label>
-                                    </td>
-                                    <td>
-                                        <textarea formControlName="Description" COLS=25 ROWs=5></textarea>
-                                        <div *ngIf="f.Description.invalid && (f.Description.dirty || f.Description.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.Description.errors?.['required']">
-                                                Description is required.
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="name">Comment:</label>
-                                    </td>
-                                    <td>
-                                        <textarea formControlName="Comment" COLS=25 ROWs=5></textarea>
-                                        <div *ngIf="f.Comment.invalid && (f.Comment.dirty || f.Comment.touched)"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.Comment.errors?.['required']">
-                                                Comment is required.
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn" >Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description </label>
+                                        <textarea rows="4" formControlName="Description" id="subject" name="subject"
+                                            placeholder="Write Description.."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Product Main Image </label>
+    
+                                        <input type="file" formControlName="ImageofProduct" class="form-control rounded-0"
+                                            id="attachments"   (change)="detectFiles($event)" name="mblueFile" size="30">
+    
+                                        <img style="border: 1px solid; padding: 5px;" class="m-3" [src]="url"
+                                            height="75" width="75" >
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Additional Images </label>
+    
+                                        <input type="file" formControlName="OtherImage" multiple
+                                            class="form-control rounded-0" id="otherattachments"  
+                                            (change)="detectOtherFiles($event)" name="mblueFile" size="10">
+                                        <img style="border: 1px solid; padding: 5px;" class="m-3" *ngFor="let item of OtherImages"
+                                            [src]="item" height="75" width="75">
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-        </section>
+                    <button class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    
+    </section>
+
+
+
+    <!-- Edit form -->
+    <section *ngIf="modelAction=='update'">
+        <div class="card card-box rounded-0">
+            <form [formGroup]="editproductform" (ngSubmit)="update()">
+                <div class="card-header">
+                    <h3>Update Product</h3>
+
+                    <div class="card-header--actions">
+                    </div>
+                </div>
+                <div class="card-body card-height">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Product Name </label>
+                                        <input formControlName="ProductName" maxlength="100" type="text"
+                                            class="form-control" placeholder="Product Name *" required>
+                                        <div *ngIf="f.ProductName.invalid && (f.ProductName.dirty || f.ProductName.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductName.errors?.['required']">
+                                                Product Name is required.
+                                            </div>
+                                            <div *ngIf="f.ProductName.errors?.['minlength']">
+                                                Product Name must not be less than 3 characters..
+                                            </div>
+                                            <div *ngIf="f.ProductName.errors?.['maxlength']">
+                                                Product Name must not be greater than 200 characters..
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>HSN CODE</label>
+                                        <input formControlName="HSNCODE" type="text" class="form-control"
+                                            placeholder="HSN CODE" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Item Code </label>
+                                        <input formControlName="item_code" type="text" class="form-control"
+                                            placeholder="Item Code" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Category </label>
+                                        <select formControlName="ProductCategory">
+                                            <option value="{{item.category}}" *ngFor="let item of Productdata">
+                                                {{item.category}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="f.ProductCategory.invalid && (f.ProductCategory.dirty || f.ProductCategory.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.ProductCategory.errors?.['required']">
+                                                Category is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Manufacturer </label>
+                                        <input formControlName="Manufacturer" type="text" class="form-control"
+                                            placeholder="Manufacturer" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Maximum retail price (MRP) </label>
+                                        <input formControlName="MRP" type="text" class="form-control"
+                                            placeholder="0.00" />
+                                        <div *ngIf="f.MRP.invalid && (f.MRP.dirty || f.MRP.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.MRP.errors?.['required']">
+                                                MRP is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Sale Price </label>
+                                        <input formControlName="SalePrice" type="text" class="form-control"
+                                            placeholder="Sale Price" />
+                                        <div *ngIf="f.SalePrice.invalid && (f.SalePrice.dirty || f.SalePrice.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.SalePrice.errors?.['required']">
+                                                Sale Price is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Brand </label>
+                                        <input formControlName="ProductBrand" type="text" class="form-control"
+                                            placeholder="Brand" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Unit </label>
+                                        <input formControlName="Unit" type="text" class="form-control"
+                                            placeholder="Unit" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Is Tax Included? </label>
+                                        <select formControlName="TaxIncluded">
+                                            <option selected value="True">Yes</option>
+                                            <option value="False">No</option>
+                                        </select>
+                                        <div *ngIf="f.TaxIncluded.invalid && (f.TaxIncluded.dirty || f.TaxIncluded.touched)"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.TaxIncluded.errors?.['required']">
+                                                Tax Included is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description </label>
+                                        <textarea rows="4" formControlName="Description" id="subject" name="subject"
+                                            placeholder="Write Description.."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Product Images </label>
+                                        <input type="file" formControlName="ImageofProduct" multiple
+                                            class="form-control rounded-0" id="attachments"  
+                                            (change)="detectFiles($event)" name="mblueFile" size="30">
+
+                                                <img *ngIf="editproductform.value['ImageofProduct']!=''&& MainUpdateImage==0" style="height:75px; width:75px; border: 1px solid; padding: 5px;    margin-right: 90px;" class="m-3"
+                                                src="{{baseImageUrl}}{{editproductform.value['ImageofProduct']}}" alt="NO IMAGE">
+                                            
+                                            <div *ngIf="MainUpdateImage==1">
+                                                <img style="border: 1px solid; padding: 5px;" class="m-3" [src]="url" height="75" width="75" >
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Additional Images </label>
+                                        <input type="file"  multiple class="form-control rounded-0" id="otherattachments"
+                                              (change)="detectOtherFiles($event)" name="mblueFile" size="10">
+                                        <div *ngIf="editproductform.value['OtherImage']!='' && IsUpdateImage==0">
+                                           <img *ngFor="let item of OtherImagesEdit"
+                                            style="height:75px; width:75px; border: 1px solid; padding: 5px;    margin-right: 90px;"
+                                            class="m-3"
+                                            src="{{baseImageUrl}}{{item}}"
+                                            alt="NO IMAGE">
+                                        </div>
+                                        <div *ngIf="IsUpdateImage==1">
+                                            <img style="border: 1px solid; padding: 5px;" class="m-3" *ngFor="let item of OtherImages"
+                                            [src]="item" height="75" width="75">
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
