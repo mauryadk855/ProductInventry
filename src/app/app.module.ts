@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{DataTablesModule} from 'angular-datatables';
 import{NgxPaginationModule} from 'ngx-pagination';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { BulkProductComponent } from './bulk-product/bulk-product.component';
 
 
 
@@ -21,6 +22,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     HomeComponent,
     AllProductComponent,
     ProductDetailsComponent,
+    BulkProductComponent,
     
     
   ],

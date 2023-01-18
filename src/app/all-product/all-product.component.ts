@@ -12,7 +12,7 @@ import { AddProductService } from '../Services/add-product.service';
 })
 export class AllProductComponent implements OnInit {
 
-
+  ExcelData: any = [];
   data:Array<any>
   totalRecords:string ='';
   page:Number=1;

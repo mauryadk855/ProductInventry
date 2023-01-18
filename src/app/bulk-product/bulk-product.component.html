@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="ml-4 col-md-12 mt-3">
+        <a href="" class="mr-5 btn btn-sm btn-outline-primary" download>Download Format</a>
+    </div>
+    <div class="col-md-8">
+        <div class="d-flex mt-3 mr-5 mb-4 pl-4 flex-md-row flex-column align-items-center">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input #myInput type="file" class="form-control rounded-0" id="inputGroupFile01"
+                        (input)="uploadedFile($event)" aria-describedby="inputGroupFileAddon01" accept=".xlsx,.xls">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <!-- <button class="col-md-3 ml-4 btn btn-outline-danger" (click)="clear()">Reset
+            Data</button> -->
+        <button class="col-md-3 ml-4 btn btn-outline-success" (click)="upload()">Upload
+            File</button>
+    </div>
+</div>

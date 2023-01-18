@@ -1,111 +1,4 @@
-@media (min-width: 992px) {
-  .col-lg {
-    flex: 1 0 0%;
-  }
 
-  .d-flex {
-    display: flex !important;
-    margin: 20px;
-  }
-
-  #navbar {
-    // display: flex;
-    //position: relative;
-    align-items: center;
-
-
-  }
-
-  #navbar::before {
-    content: "";
-    background-color: gray;
-    position: absolute;
-    height: 13%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    opacity: 0.4;
-    background-attachment: fixed;
-
-  }
-#navbar::before {
-    content: "";
-    background-color: gray;
-    position: absolute;
-    height: 13%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: -1;
-    opacity: 0.4;
-    background-attachment: fixed;
-
-}
-#Home  {
-    content: "";
-    position: absolute;
-   // background: url('/assets/Img/bg back.jpg') no-repeat center center/cover;
-    height: 0px;
-    top: 0;
-    left: 0%;
-    right: 0;
-    width: 0%;
-    z-index: -100;
-    opacity: 1;
-    display: block;
-}
-  }
-
-.btn {
-  padding: 8px 30px;
-  background-color: rgb(145, 215, 136);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 30px;
-  font-size: 1.0rem;
-  border-color: 2px solid green;
-}
-.btn:hover {
-  background-color: green;
-  transition: 0.2s;
-}
-#contact-box input,
-#contact-box select,
-#contact-box textarea{
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 10px;
-  font-size: 1rem;
-  border-radius: 4px;
- // margin-right: 100px;
-}
-
-#contact-box label{
-  font-size: 1.8rem;
-  color: black;
-}
-#contact-box {
-  position: relative;
-}
-
-#contact-box{
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 50px;
-}
-
-
-#contact-box-1 input{
- width: auto;
-}
-h2{
-  text-align: center;
-  font-size: 40px;
-}
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -113,26 +6,8 @@ input[type=text], select, textarea {
   border-radius: 4px;
   resize: vertical;
 }
-card-header--title font-size-lg font-weight-bold text-info{
-  text-align: center;
-}
-h3{
-  text-align: center;
-  color:rgb(33, 132, 132);
-}
-.btn-remove-image{
-  position: relative;
-  cursor: pointer;
-  top:-20px;
-  right: -80px;
-  background-color: red;
-  color: white;
-  border-radius: 70%;
-  width: 100px;
-  height: auto;
-  text-align: center;
-}
 .fa fa-close{
   color: red;
 }
+.custom-file{width: 90%;}
 

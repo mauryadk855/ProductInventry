@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AddProductService {
 
   PostDataUrl='https://localhost:7203/api/AddProduct/AddProduct'
+  BulkPostDataUrl='https://localhost:7203/api/AddProduct/AddProductBulk'
   
   GetDataUrl='https://localhost:7203/api/AddProduct/GetAllProduct'
 
@@ -26,9 +27,16 @@ export class AddProductService {
   users(){
     return this.http.get(this.GetDataUrl)
   }
-  saveusers(data:any){    
+  saveusers(data:any){
+    debugger;    
     return this.http.post(this.PostDataUrl,data)
   }
+
+  bulksaveusers(data:any){
+    debugger;    
+    return this.http.post(this.BulkPostDataUrl,data)
+  }
+
   imgusers(data:any){
     return this.http.post(this.PostImgUrl,data)
   }
